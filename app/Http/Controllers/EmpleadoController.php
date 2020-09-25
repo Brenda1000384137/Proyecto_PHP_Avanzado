@@ -54,7 +54,9 @@ class EmpleadoController extends Controller
             'min'=>"El campo debe tener 3 carácteres como mínimo",
             'max'=>"El campo debe tener 20 carácteres como máximo",
             'email'=>"El correo electrónico debe ser una dirección válida.",
-            'regex'=>"Lo siento no puedes colocar números aquí."
+            'regex'=>"Lo siento no puedes colocar números aquí.",
+            "date_format"=>"Debes colocar una fecha válida."
+
             ];
     
             $validator = Validator::make($request->all(), [
@@ -65,8 +67,8 @@ class EmpleadoController extends Controller
                 "email" => ["required", 'email:rfc,dns'],
                 "direccion" => ["required"],
                 "ciudad" => ["required"],
-                "contrato" => ["required"],
-                "nacimiento" => ["required"]
+                "contrato" => ["required", "date_format:Y-m-d"],
+                "nacimiento" => ["required", "date_format:Y-m-d"]
     
             ], $mensajes);
             
@@ -151,7 +153,8 @@ class EmpleadoController extends Controller
         'min'=>"El campo debe tener 3 carácteres como mínimo",
         'max'=>"El campo debe tener 20 carácteres como máximo",
         'email'=>"El correo electrónico debe ser una dirección válida.",
-        'regex'=>"Lo siento no puedes colocar números aquí."
+        'regex'=>"Lo siento no puedes colocar números aquí.",
+        "date_format"=>"Debes colocar una fecha válida."
         ];
 
         $validator = Validator::make($request->all(), [
@@ -162,8 +165,8 @@ class EmpleadoController extends Controller
             "email" => ["required", 'email:rfc,dns'],
             "direccion" => ["required"],
             "ciudad" => ["required"],
-            "contrato" => ["required"],
-            "nacimiento" => ["required"]
+            "contrato" => ["required",  "date_format:Y-m-d"],
+            "nacimiento" => ["required", "date_format:Y-m-d"]
 
         ], $mensajes);
 

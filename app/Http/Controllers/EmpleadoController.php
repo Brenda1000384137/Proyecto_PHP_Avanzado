@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Empleado;
 use Illuminate\Support\Facades\Validator;
 
+
 class EmpleadoController extends Controller
 {
     /**
@@ -60,6 +61,7 @@ class EmpleadoController extends Controller
                 "jefe" => ["required"],
                 "nombre" => ["required", 'min:3', 'max:20', 'regex:/^[\pL\s\-]+$/u' ],
                 "apellido" => ["required", 'min:3', 'max:20',  'regex:/^[\pL\s\-]+$/u' ],
+                //Colocar un dominio que si exista
                 "email" => ["required", 'email:rfc,dns'],
                 "direccion" => ["required"],
                 "ciudad" => ["required"],
@@ -156,6 +158,7 @@ class EmpleadoController extends Controller
             "jefe" => ["required"],
             "nombre" => ["required", 'min:3', 'max:20', 'regex:/^[\pL\s\-]+$/u'],
             "apellido" => ["required", 'min:3', 'max:20', 'regex:/^[\pL\s\-]+$/u'],
+            //Colocar un dominio valido 
             "email" => ["required", 'email:rfc,dns'],
             "direccion" => ["required"],
             "ciudad" => ["required"],

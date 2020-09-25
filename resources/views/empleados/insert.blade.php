@@ -32,11 +32,13 @@
           <div class="form-group col-md-6">
             <label for="nombre">Nombre</label>
             <input id="nombre" name="nombre" type="text" placeholder="Nombre" class="form-control input-md">
+            <p class="text-danger">{{$errors->first('nombre')}}</p>
           </div>
           <!-- Text input-->
           <div class="form-group col-md-6">
             <label for="textinput">Apellido</label>
             <input id="textinput" name="apellido" type="text" placeholder="Apellido" class="form-control input-md">
+            <p class="text-danger">{{$errors->first('apellido')}}</p>
           </div>
         </div>
         <div class="form-row">
@@ -48,6 +50,7 @@
               <option>{{ $c->Title}}</option>
               @endforeach
             </select>
+            <p class="text-danger">{{$errors->first('cargo')}}</p>
           </div>
 
           <!-- Select Basic -->
@@ -59,6 +62,7 @@
               <option value="{{ $j->EmployeeId }}">{{$j->LastName}}, {{$j->FirstName}}</option>
               @endforeach
             </select>
+            <p class="text-danger">{{$errors->first('jefe')}}</p>
           </div>
         </div>
         <div class="form-row">
@@ -66,11 +70,13 @@
           <div class="form-group col-md-6">
             <label for="textinput">Fecha Contratación</label>
             <input name="contrato" type="text" id="date" placeholder="Fecha Contratación" class="datepicker form-control input-md">
+            <p class="text-danger">{{$errors->first('contrato')}}</p>
           </div>
           <!-- Text input-->
           <div class="form-group col-md-6">
             <label for="textinput">Fecha Nacimiento</label>
             <input name="nacimiento" type="text" id="datepicker" placeholder="Fecha Nacimiento" class="datepicker form-control input-md">
+            <p class="text-danger">{{$errors->first('nacimiento')}}</p>
           </div>
         </div>
         <div class="form-row">
@@ -78,18 +84,21 @@
           <div class="form-group col-md-4">
             <label for="textinput">Correo</label>
             <input id="textinput" name="email" type="text" placeholder="Correo" class="form-control input-md">
+            <p class="text-danger">{{$errors->first('email')}}</p>
           </div>
 
           <!-- Text input-->
           <div class="form-group col-md-4">
             <label for="textinput">Dirección</label>
             <input id="textinput" name="direccion" type="text" placeholder="Dirección" class="form-control input-md">
+            <p class="text-danger">{{$errors->first('direccion')}}</p>
           </div>
 
           <!-- Select Basic -->
           <div class="form-group col-md-4">
             <label for="selectbasic">Ciudad</label>
             <input id="textinput" name="ciudad" type="text" placeholder="Ciudad" class="form-control input-md">
+            <p class="text-danger">{{$errors->first('ciudad')}}</p>
           </div>
         </div>
         <!-- Button (Double) -->

@@ -1,14 +1,11 @@
 <!-- Heredar la masterpage en esta vista -->
 @extends('layouts.master')
-
 <!-- contenido vistas -->
 @section('contenido_vistas')
-
-
  <br>
 <div class="card-deck">
     
-        <div class="card" style="height:400px" >
+        <div class="card" style="height:450px" >
             <div class="card-header" >
                 Información del empleado:
             </div>
@@ -33,6 +30,9 @@
                             </li> 
                             <li class="list-group-item">   
                                 Fecha Contratación: {{  $empleado->HireDate->toFormattedDateString()   }}
+                            </li>
+                            <li class="list-group-item">   
+                                Celular: {{  $empleado->Phone }}
                             </li>
                     </ul>
             </div>

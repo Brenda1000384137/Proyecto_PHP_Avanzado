@@ -22,20 +22,20 @@
     <a class="btn btn-primary btn-sm" href="{{url('empleados/create')}}">Nuevo Empleado</a>
     <br><br>
     <table class="table table-bordered">
-        <thead>
+         <thead>
             <tr>
-                <td>Nombre Completo</td>
-                <td>Cargo</td>
-                <td>Email</td>
-                <td>Detalles</td>
-                <td>Acciones</d>
+                <td><strong>Nombre Completo</strong></td>
+                <td><strong>Cargo</strong></td>
+                <td><strong>Correo</strong></td>
+                <td><strong>Detalles</strong></td>
+                <td><strong>Acciones</strong></d>
             </tr>
         </thead>
         <tbody>
             @foreach($empleados as $empleado)
                 <tr>
                     <td>{{$empleado->FirstName}}
-                         <strong class="text-danger"> {{$empleado->LastName}}</strong></td>
+                         <strong > {{$empleado->LastName}}</strong></td>
                     <td>{{$empleado->Title}}</td>
                     <td>{{$empleado->Email}}</td>
                     <td>

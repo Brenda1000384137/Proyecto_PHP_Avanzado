@@ -34,14 +34,17 @@ class ArtistaController extends Controller
     public function store(Request $r){
         //validacion paso 1:establacer reglas de vaidacion
        $reglas=[
-            "nombre_artista"=>['required', 'alpha', 'min:3', 'max:6', 'unique:artists,Name' ] 
+            "nombre_artista"=>['required', 'min:3', 'max:15', 'unique:artists,Name', 'regex:/^[\pL\s\-]+$/u'  ] 
        ]; 
 
        //Validacion paso 1b: poner mensajes personalizados
        $mensajes=[
            'required'=>"El nombre del artista es obligatorio",
-           'alpha'=> "Solo letras papu",
-           'min'=>"El attribute debe tener :val caracteres como minimo"
+           'alpha'=> "Introduce solo letras, por favor",
+           'min'=>"El Nombre debe tener 3 carácteres como mínimo",
+           'max'=>"El Nombre debe tener 15 carácteres como máximo",
+           'unique'=>"El nombre artista ya ha sido tomado.",
+           'regex'=>"Lo siento no puedes colocar números aquí."
        ];
        //validacion paso 2: crear el objeto de validacion
        
@@ -66,7 +69,8 @@ class ArtistaController extends Controller
        //redireccionar a la vista de nuevo
        //redirect: una ruta que exista en el web.php(de get)
        //with del redirect: crea una variable de session flash, para portar
-       return redirect('artistas/create')->with('exito', "Artista Registrado existosamente");
+       return redirect('artistas')->with('mensaje', "Artista Registrado existosamente");
+       
     }
     
        

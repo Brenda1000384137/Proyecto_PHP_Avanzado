@@ -47,6 +47,32 @@ class EmpleadoController extends Controller
      */
     public function store(Request $request)
     {
+         //Validacion paso 1b: poner mensajes personalizados
+         $mensajes=[
+            'required'=>"El campo es obligatorio.",
+            'min'=>"El campo debe tener 3 carácteres como mínimo",
+            'max'=>"El campo debe tener 20 carácteres como máximo",
+            'email'=>"El correo electrónico debe ser una dirección válida.",
+            'regex'=>"Lo siento no puedes colocar números aquí."
+            ];
+    
+            $validator = Validator::make($request->all(), [
+                "jefe" => ["required"],
+                "nombre" => ["required", 'min:3', 'max:20', 'regex:/^[\pL\s\-]+$/u' ],
+                "apellido" => ["required", 'min:3', 'max:20',  'regex:/^[\pL\s\-]+$/u' ],
+                "email" => ["required", 'email:rfc,dns'],
+                "direccion" => ["required"],
+                "ciudad" => ["required"],
+                "contrato" => ["required"],
+                "nacimiento" => ["required"]
+    
+            ], $mensajes);
+            
+            //Validar
+            if($validator->fails()){
+                return redirect ("empleados/create")
+                ->withErrors($validator);
+            }
         //Crear objeto tipo Empleado; 
         $empleado = new Empleado();
         //asigar valores a los atributos
@@ -116,16 +142,34 @@ class EmpleadoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $regla =  [ 
-            "jefe" => "required"
+        
+        //Validacion paso 1b: poner mensajes personalizados
+        $mensajes=[
+        'required'=>"El campo es obligatorio.",
+        'min'=>"El campo debe tener 3 carácteres como mínimo",
+        'max'=>"El campo debe tener 20 carácteres como máximo",
+        'email'=>"El correo electrónico debe ser una dirección válida.",
+        'regex'=>"Lo siento no puedes colocar números aquí."
         ];
-        //Crear el objeto validador
-        $validador = Validator::make($request->all(), $regla);
+
+        $validator = Validator::make($request->all(), [
+            "jefe" => ["required"],
+            "nombre" => ["required", 'min:3', 'max:20', 'regex:/^[\pL\s\-]+$/u'],
+            "apellido" => ["required", 'min:3', 'max:20', 'regex:/^[\pL\s\-]+$/u'],
+            "email" => ["required", 'email:rfc,dns'],
+            "direccion" => ["required"],
+            "ciudad" => ["required"],
+            "contrato" => ["required"],
+            "nacimiento" => ["required"]
+
+        ], $mensajes);
+
+        
         
         //Validar
-        if($validador->fails()){
+        if($validator->fails()){
             return redirect ("empleados/$id/edit")
-            ->withErrors($validador);
+            ->withErrors($validator);
         }
 
         //Seleccionar el empleado por id que se va a actualizar
@@ -142,8 +186,8 @@ class EmpleadoController extends Controller
         $empleado->City = $request->input("ciudad");
         //Guardar
         $empleado->save();
-        return redirect("empleados/$empleado->EmployeeId/edit")
-        ->with( "mensaje" , "empleado actualizado");
+        return redirect("empleados")
+        ->with( "mensaje" , "empleado actualizado correctamente");
     }
 
     /**
